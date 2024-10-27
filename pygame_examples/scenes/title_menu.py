@@ -4,6 +4,7 @@ from utils.spritesheet_utils import FontUtils
 from mapping.title_menu_enum import TitleMenuEnum
 from common import TEXT_COLOR, RED_COLOR
 from pygame import transform
+import re
 
 PADDING = 16
 LINE_HEIGHT = 16
@@ -11,8 +12,9 @@ SCALE = 2
 
 
 SCENE_NAMES = {
-    TitleMenuEnum.CollectPotions: "Collect Potions",
-    TitleMenuEnum.AnimateMovement: "Animate Movement",
+    title: re.sub(r"(\w)([A-Z])", r"\1 \2", str(title.value)).strip()
+    for title in TitleMenuEnum
+    if title != TitleMenuEnum.TitleMenu
 }
 
 
@@ -52,6 +54,7 @@ class TitleMenu(BaseScene):
             self.text_groups[scene.value].add(self.text[scene.value])
 
     def render(self, screen, clock, events, keys):
+        pygame.mouse.set_visible(True)
         self.screen = screen
         point = pygame.mouse.get_pos()
 

@@ -159,7 +159,7 @@ class CollectPotions(BaseScene):
         self.screen = screen
         self.screen_size = screen.get_size()
         dt = clock.tick(FPS)
-        pygame.mouse.set_visible(False)
+        pygame.mouse.set_visible(self.input_mode == InputMode.KEYBOARD)
 
         if keys[pygame.K_k]:
             self.input_mode = InputMode.KEYBOARD

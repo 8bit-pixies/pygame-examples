@@ -1,6 +1,9 @@
 import pygame
+from pygame import K_ESCAPE
 import asyncio
 
+from scenes.warrior_swing import WarriorSwing
+from scenes.wizard_clock import WizardClock
 from scenes.animate_movement import AnimateMovement
 from scenes.collect_potions import CollectPotions
 from scenes.title_menu import TitleMenu
@@ -18,6 +21,8 @@ clock = pygame.time.Clock()
 title_screen = TitleMenu()
 collect_potions = CollectPotions()
 animate_movement = AnimateMovement()
+wizard_clock = WizardClock()
+warrior_swing = WarriorSwing()
 
 
 async def main():
@@ -30,9 +35,11 @@ async def main():
             if event.type == pygame.QUIT:
                 running = False
 
-        keys = pygame.key.get_pressed()
         screen.fill(BASE_COLOR)
-        if title_selected is None:
+        keys = pygame.key.get_pressed()
+        if keys[K_ESCAPE]:
+            title_selected = TitleMenuEnum.TitleMenu
+        if title_selected is None or title_selected == TitleMenuEnum.TitleMenu:
             title_selected: TitleMenuEnum | None = title_screen.render(
                 screen, clock, events, keys
             )
@@ -40,6 +47,10 @@ async def main():
             collect_potions.render(screen, clock, events, keys)
         elif title_selected == TitleMenuEnum.AnimateMovement:
             animate_movement.render(screen, clock, events, keys)
+        elif title_selected == TitleMenuEnum.WizardClock:
+            wizard_clock.render(screen, clock, events, keys)
+        elif title_selected == TitleMenuEnum.WarriorSwing:
+            warrior_swing.render(screen, clock, events, keys)
 
         screen_display.update()
         pygame.display.flip()

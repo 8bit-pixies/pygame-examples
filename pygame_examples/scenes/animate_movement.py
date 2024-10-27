@@ -37,11 +37,14 @@ class AnimateOpenClose(Enum):
 WIZARD_TILE = (0, 7)
 CHEST_TILE = (5, 7)
 SWITCH_TILE = (1, 5)
-LINE_HEIGHT = 32
 MOVEMENT_SPEED = 0.5
 FPS = 60
 
 SCALE = 6
+
+PADDING = 16
+LINE_HEIGHT = 16
+TEXT_SCALE = 2
 
 
 class Wizard(pygame.sprite.Sprite):
@@ -177,18 +180,21 @@ class AnimateMovement(BaseScene):
         self._trigger_update_lock = None
 
     def draw_text(self):
-        self.screen.blit(
-            self.font.text_to_image_shadow_effect(
-                " Move around using Keyboard", TEXT_COLOR
-            ),
-            (0, 0),
-        )
-        self.screen.blit(
-            self.font.text_to_image_shadow_effect(" Use [z] to interact", TEXT_COLOR),
-            (0, LINE_HEIGHT),
-        )
+        screen_text_color = ["Move around using Keyboard", "Use [z] to interact"]
+
+        for indx, text in enumerate(screen_text_color):
+            self.screen.blit(
+                transform.scale_by(
+                    self.font.text_to_image_shadow_effect(text, TEXT_COLOR), TEXT_SCALE
+                ),
+                (
+                    PADDING * TEXT_SCALE,
+                    PADDING * TEXT_SCALE + LINE_HEIGHT * indx * TEXT_SCALE,
+                ),
+            )
 
     def render(self, screen, clock, events, keys):
+        pygame.mouse.set_visible(True)
         self.screen = screen
         self.screen_size = screen.get_size()
         dt = clock.tick(FPS)
