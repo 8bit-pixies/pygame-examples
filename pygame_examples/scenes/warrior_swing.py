@@ -187,7 +187,9 @@ class WarriorSwing(BaseScene):
 
     def draw_text(self):
         screen_text_color = [
-            "Press [z] to swing",
+            "Press [w,a,s,b] to move",
+            "Mouse click to swing",
+
         ]
 
         for indx, text in enumerate(screen_text_color):
@@ -209,17 +211,17 @@ class WarriorSwing(BaseScene):
         self.calculate_angle(dt)
 
         trigger = False
-        if keys[pygame.K_z]:
+        if pygame.MOUSEBUTTONDOWN in events:
             trigger = True
 
         x, y = 0, 0
-        if keys[pygame.K_UP] and not keys[pygame.K_DOWN]:
+        if keys[pygame.K_w] and not keys[pygame.K_s]:
             y = -MOVEMENT_SPEED * dt
-        elif keys[pygame.K_DOWN] and not keys[pygame.K_UP]:
+        elif keys[pygame.K_s] and not keys[pygame.K_w]:
             y = MOVEMENT_SPEED * dt
-        if keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]:
+        if keys[pygame.K_a] and not keys[pygame.K_d]:
             x = -MOVEMENT_SPEED * dt
-        elif keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT]:
+        elif keys[pygame.K_d] and not keys[pygame.K_a]:
             x = MOVEMENT_SPEED * dt
 
         self.battleaxe_group.update(trigger, self.warrior.rect.center, pygame.mouse.get_pos())
