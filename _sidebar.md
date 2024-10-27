@@ -1,2 +1,2 @@
 * [Home](/)
-* [Pygame Examples](/pygame_examples/build/web/index.html)
+* [Pygame Examples](https://8bit-pixies.github.io/pygame-examples/web/index.html)
