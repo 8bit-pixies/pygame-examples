@@ -1,0 +1,13 @@
+[project]
+name = "pygame-examples"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "attrs<21.5",
+    "numpy<2",
+    "pillow<11.0.0",
+    "pygame>=2.6.1",
+    "pygbag>=0.9.2",
+]
