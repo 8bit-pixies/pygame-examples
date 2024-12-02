@@ -9,4 +9,4 @@ This repository attempts two things:
 
 To promote ease and speed of development, we will use only [one tileset](https://www.kenney.nl/assets/tiny-dungeon), with [bitmap fonts](https://kenney.nl/assets/kenney-fonts), and a pre-determined [light (Latte) and dark (Mocha) color palettes ](https://catppuccin.com/palette).
 
-[See the docs](https://8bit-pixies.github.io/pygame-examples/)
+[See the docs](https://monomoggy.github.io/pygame-examples/)
